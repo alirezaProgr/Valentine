@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yay! 🐥💙</title>
+<style>
+  /* کل بدنه */
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Pacifico', cursive, system-ui, sans-serif;
+    background: linear-gradient(120deg, #ff97ca, #fff, #87cefa, #ffe6f2);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    text-align: center;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* متن اصلی */
+  h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: #1e90ff;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.2), 0 0 10px #87cefa;
+    margin-bottom: 20px;
+    animation: swing 2s ease-in-out infinite;
+  }
+
+  @keyframes swing {
+    0% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+    100% { transform: rotate(-2deg); }
+  }
+
+  /* جوجه / emoji بزرگ */
+  .bear {
+    font-size: 90px;
+    animation: bounce 1.2s infinite ease-in-out, rotateBear 6s infinite linear;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes rotateBear {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+
+  /* قلب ها و جوجه های پرنده */
+  .floating span {
+    position: absolute;
+    font-size: clamp(20px, 4vw, 40px);
+    animation: floatUp linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-50px) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div>
+  <!-- جوجه و emoji بزرگ -->
+  <div class="bear">🐥🎉</div>
+
+  <!-- متن عاشقانه -->
+  <h1>badihi bood 😌 but I love you 💙</h1>
+
+  <!-- floating emojis -->
+  <div class="floating">
+    <span style="left:5vw; animation-duration:4s;">💗</span>
+    <span style="left:20vw; animation-duration:5s;">🐣</span>
+    <span style="left:35vw; animation-duration:6s;">💞</span>
+    <span style="left:50vw; animation-duration:4.5s;">🐥</span>
+    <span style="left:65vw; animation-duration:5.2s;">💙</span>
+    <span style="left:80vw; animation-duration:6.1s;">🐣</span>
+  </div>
+</div>
+
+<!-- موزیک ملایم -->
+<audio id="bgMusic" src="musica-romantica.mp3" autoplay loop></audio>
+
+<script>
+  // fade-in موزیک
+  const music = document.getElementById("bgMusic");
+  music.volume = 0;
+
+  function fadeIn() {
+    let v = 0;
+    const i = setInterval(() => {
+      v += 0.05;
+      music.volume = Math.min(v, 1);
+      if (v >= 1) clearInterval(i);
+    }, 120);
+  }
+
+  music.play().then(fadeIn).catch(() => {
+    document.body.addEventListener("click", () => {
+      music.play();
+      fadeIn();
+    }, { once: true });
+  });
+</script>
+
+</body>
+</html>
